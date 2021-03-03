@@ -1,0 +1,48 @@
+{
+    "AWSTemplateFormatVersion" :"2010-09-09",
+    "Description" : "This is my VPC Template",
+    "Metadata" : {
+        "Vpc" : {"Description" : "This is first my first VPC through CF"},
+        "Subnet" : {"Description":"This is my first Subnet"}
+    },
+    "Parameters" : {
+        "EnvironmentName" : {
+            "Description" : "A Environment name that is used here",
+            "Type" : "String"
+        },
+        "VPCCIDR" : {
+            "Description" : "Please enter IPRange for the CIDR",
+            "Type" : "String",
+            "Default" : "192.168.0.0/16"
+        },
+        "PublicSubnetCIDR" : {
+            "Description" : "Please Enter the Public Subnet range within  CIDR",
+            "Type" : "String",
+            "Default" : "192.168.1.0/24"
+        },
+        "PrivateSubnetCIDR" : {
+            "Description" : "Please ENter the Private Subnet range within CIDR",
+            "Type" : "String",
+            "Default" : "192.168.2.0/24"
+        }    
+
+
+    },
+    "Resources" : {
+        "VPC" : {
+            "Type" : "AWS::EC2::VPC",
+            "Properties" : {
+                "CidrBlock" : {"Ref": "VPCCIDR"},
+                "EnableDnsSupport" : "True",
+                "EnableDnsHostnames" : "True",
+                "Tags" : [
+                    {
+                        "Key" :"NAME",
+                        "Value" :"MYVPC"
+                    }
+                ]
+            }
+        }
+           
+    }
+}
